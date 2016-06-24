@@ -11,12 +11,12 @@ var highScore2;
 var highScore3;
 var highScore4;
 var highScore5;
-var name1
-var name2
-var name3
-var name4
-var name5
-var nameDead
+var name1;
+var name2;
+var name3;
+var name4;
+var name5;
+var nameDead;
 var highScoreDead;
 var name;
 var jetPack = 100;
@@ -68,17 +68,18 @@ var ENEMY_VELOCITY = 50;
 function init() {  			// how the entire game looks (still)
 	spritesheet.src = 'StompySpritesUpdate.png';
 	
+	setScore = localStorage.getItem('score');
 	highScore = localStorage.getItem('high');
 	highScore1 = localStorage.getItem('high1');
 	highScore2 = localStorage.getItem('high2');
 	highScore3 = localStorage.getItem('high3');
 	highScore4 = localStorage.getItem('high4');
 	highScore5 = localStorage.getItem('high5');
-	name1 = localStorage.getItem('name1')
-	name2 = localStorage.getItem('name2')
-	name3 = localStorage.getItem('name3')
-	name4 = localStorage.getItem('name4')
-	name5 = localStorage.getItem('name5')
+	name1 = localStorage.getItem('name1');
+	name2 = localStorage.getItem('name2');
+	name3 = localStorage.getItem('name3');
+	name4 = localStorage.getItem('name4');
+	name5 = localStorage.getItem('name5');
 	if(!highScore) highScore = 0;
 	if(!highScore1) highScore1 = 0;
 	if(!highScore2) highScore2 = 0;
@@ -123,7 +124,7 @@ function init() {  			// how the entire game looks (still)
 	player = new entity(0, 0, 30, 38);
 	reset();
 	
-	jet = new entity(-100, -100, 3, 7)
+	jet = new entity(-100, -100, 3, 7);
 	 
 	
 	document.addEventListener('keydown', keyDown, false);
@@ -136,7 +137,7 @@ function moveTarget() {
 	score += 5;
 	setScore = score
 	localStorage.setItem('score', setScore);
-	if (score > highScore) 
+	if (score > highScore)
 		highScore = score;
 		localStorage.setItem('high', highScore);
 	
@@ -327,20 +328,32 @@ function reset() {
 		  "Number 2:  " + name2 + " " + highScore2 + " points" + "\n" + "\n" +
 		  "Number 3:  " + name3 + " " + highScore3 + " points" + "\n" + "\n" +
 		  "Number 4:  " + name4 + " " + highScore4 + " points" + "\n" + "\n" +
-		  "Number 5:  " + name5 + " " + highScore5 + " points" + "\n" + "\n")
+		  "Number 5:  " + name5 + " " + highScore5 + " points" + "\n" + "\n");
 	
 	name = prompt("What's your name", "");
-	localStorage.setItem('name', name)
+	localStorage.setItem('name', name);
 	
 	score = 0;
-
-	jetPack = 100
+	setScore = 0;
+	localStorage.setItem('score', setScore);
+	
+	jetPack = 100;
 	player.vx = 0;
 	player.vy = 0;
 	player.setLeft(0);
 	player.setBottom(canvas.height);
+	
 
-	}
+	inputs.left = false;
+
+	inputs.up = false;
+
+	inputs.right = false;
+
+	inputs.down = false;
+
+	
+}
 
 function handleCollistion() {
 	airborn = true;
