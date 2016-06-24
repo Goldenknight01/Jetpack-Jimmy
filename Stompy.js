@@ -3,8 +3,22 @@ var ctx;
 var player;
 var airborn;
 var score;
-var highScore;
+var setScore;
 var sliding;
+var highScore;
+var highScore1;
+var highScore2;
+var highScore3;
+var highScore4;
+var highScore5;
+var name1
+var name2
+var name3
+var name4
+var name5
+var nameDead
+var highScoreDead;
+var name;
 var jetPack = 100;
 var jumpTimer = 0;
 var DROP_FACTOR = 3;
@@ -19,13 +33,13 @@ var inputs = {
 var spritesheet = new Image();
 
 var sprites = {     // drawing the sprites from a single image
-	left: new sprite(30, 38, 30, 38),
-	right: new sprite(0, 0, 30, 38),
-	leftJump: new sprite(0, 38, 30, 38),
-	rightJump: new sprite(30, 0 , 30, 38),
-	brick: new sprite(60, 0, 50, 50),
-	coin: new sprite(60, 50, 25, 27),
-	jet: new sprite(85, 50, 3, 7)
+	left: new sprite(32, 39, 30, 38),
+	right: new sprite(1, 0, 30, 38),
+	leftJump: new sprite(1, 39, 30, 38),
+	rightJump: new sprite(32, 0 , 30, 38),
+	brick: new sprite(63, 0, 50, 50),
+	coin: new sprite(63, 51, 26, 27),
+	jet: new sprite(89, 52, 3, 7)
 };
 
 var facingRight = true;
@@ -55,7 +69,22 @@ function init() {  			// how the entire game looks (still)
 	spritesheet.src = 'StompySpritesUpdate.png';
 	
 	highScore = localStorage.getItem('high');
+	highScore1 = localStorage.getItem('high1');
+	highScore2 = localStorage.getItem('high2');
+	highScore3 = localStorage.getItem('high3');
+	highScore4 = localStorage.getItem('high4');
+	highScore5 = localStorage.getItem('high5');
+	name1 = localStorage.getItem('name1')
+	name2 = localStorage.getItem('name2')
+	name3 = localStorage.getItem('name3')
+	name4 = localStorage.getItem('name4')
+	name5 = localStorage.getItem('name5')
 	if(!highScore) highScore = 0;
+	if(!highScore1) highScore1 = 0;
+	if(!highScore2) highScore2 = 0;
+	if(!highScore3) highScore3 = 0;
+	if(!highScore4) highScore4 = 0;
+	if(!highScore5) highScore5 = 0;
 	
 	
 	canvas = document.getElementById('canvas');
@@ -105,6 +134,8 @@ function init() {  			// how the entire game looks (still)
 
 function moveTarget() {
 	score += 5;
+	setScore = score
+	localStorage.setItem('score', setScore);
 	if (score > highScore) 
 		highScore = score;
 		localStorage.setItem('high', highScore);
@@ -215,6 +246,92 @@ function updateplayerposition() {
 	
 }
 function reset() {
+	if (setScore > highScore1) {
+		HighScoreDead = highScore5;
+		highScore5 = highScore4;
+		highScore4 = highScore3;
+		highScore3 = highScore2;
+		highScore2 = highScore1;
+		highScore1 = setScore;
+		nameDead = name5;
+		name5 = name4;
+		name4 = name3;
+		name3 = name2;
+		name2 = name1;
+		name1 = name;
+		localStorage.setItem('name5', name5);
+		localStorage.setItem('name4', name4);
+		localStorage.setItem('name3', name3);
+		localStorage.setItem('name2', name2);
+		localStorage.setItem('name1', name1);
+		localStorage.setItem('high5', highScore5);
+		localStorage.setItem('high4', highScore4);
+		localStorage.setItem('high3', highScore3);
+		localStorage.setItem('high2', highScore2);
+		localStorage.setItem('high1', highScore1);
+	} else if (setScore > highScore2) {
+		HighScoreDead = highScore5;
+		highScore5 = highScore4;
+		highScore4 = highScore3;
+		highScore3 = highScore2;
+		highScore2 = setScore;
+		nameDead = name5;
+		name5 = name4;
+		name4 = name3;
+		name3 = name2;
+		name2 = name;
+		localStorage.setItem('name5', name5);
+		localStorage.setItem('name4', name4);
+		localStorage.setItem('name3', name3);
+		localStorage.setItem('name2', name2);
+		localStorage.setItem('high5', highScore5);
+		localStorage.setItem('high4', highScore4);
+		localStorage.setItem('high3', highScore3);
+		localStorage.setItem('high2', highScore2);
+	} else if (setScore > highScore3) {
+		HighScoreDead = highScore5;
+		highScore5 = highScore4;
+		highScore4 = highScore3;
+		highScore3 = setScore;
+		nameDead = name5;
+		name5 = name4;
+		name4 = name3;
+		name3 = name;
+		localStorage.setItem('name5', name5);
+		localStorage.setItem('name4', name4);
+		localStorage.setItem('name3', name3);
+		localStorage.setItem('high5', highScore5);
+		localStorage.setItem('high4', highScore4);
+		localStorage.setItem('high3', highScore3);
+	} else if (setScore > highScore4) {
+		HighScoreDead = highScore5;
+		highScore5 = highScore4;
+		highScore4 = setScore;
+		nameDead = name5;
+		name5 = name4;
+		name4 = name;
+		localStorage.setItem('name5', name5);
+		localStorage.setItem('name4', name4);
+		localStorage.setItem('high5', highScore5);
+		localStorage.setItem('high4', highScore4);
+	} else if (setScore > highScore5) {
+		HighScoreDead = highScore5;
+		highScore5 = setScore;
+		nameDead = name5;
+		name5 = name;
+		localStorage.setItem('name5', name5);
+		localStorage.setItem('high5', highScore5);
+	}
+	
+	alert("Number 1:  " + name1 + " " + highScore1 + " points" + "\n" + "\n" +
+		  "Number 2:  " + name2 + " " + highScore2 + " points" + "\n" + "\n" +
+		  "Number 3:  " + name3 + " " + highScore3 + " points" + "\n" + "\n" +
+		  "Number 4:  " + name4 + " " + highScore4 + " points" + "\n" + "\n" +
+		  "Number 5:  " + name5 + " " + highScore5 + " points" + "\n" + "\n")
+	
+	name = prompt("What's your name", "");
+	localStorage.setItem('name', name)
+	
 	score = 0;
 
 	jetPack = 100
