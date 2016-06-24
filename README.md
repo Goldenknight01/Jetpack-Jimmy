@@ -4,4 +4,4 @@ Update 1.01
 ----------------------
 Fixed the sprites
 
-added a leaderbroad
+Added a leaderbroad
